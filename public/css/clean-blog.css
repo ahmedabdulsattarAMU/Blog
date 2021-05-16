@@ -434,3 +434,8 @@ article .container .row{
   text-decoration: underline;
   color: #59483c;
 }
+
+.post-form li *{
+  display:inline-block;
+  margin:0 10px;
+}

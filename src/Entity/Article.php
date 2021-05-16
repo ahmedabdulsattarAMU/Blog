@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,10 +40,27 @@ class Article
      */
     private $editedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Keyword", inversedBy="article", cascade={"persist"})
+     * @ORM\JoinTable(
+     *  name="article_keyword",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="keyword_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $keywords;
+
+
     public function __construct()
     {
-        $this->publishedAt= new DateTime(); 
-        $this->editedAt   = new DateTime(); 
+        $this->publishedAt  = new DateTime(); 
+        $this->editedAt     = new DateTime(); 
+        $this->keywords     = new ArrayCollection();
+
     }
     
 
@@ -98,4 +117,22 @@ class Article
 
         return $this;
     }
+
+    public function addKeyword(Keyword $keyword): self
+    {
+        $this->keywords[] = $keyword;
+ 
+        return $this;
+    }
+ 
+    public function removeKeyword(Keyword $keyword): bool
+    {
+        return $this->keywords->removeElement($keyword);
+    }
+ 
+    public function getKeywords(): Collection
+    {
+        return $this->keywords;
+    }
+
 }
