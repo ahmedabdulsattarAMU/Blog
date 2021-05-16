@@ -1,38 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block post_title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block post_subtitle %}
+{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>PublishedAt</th>
-                <td>{{ article.publishedAt ? article.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EditedAt</th>
-                <td>{{ article.editedAt ? article.editedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('article_index') }}">back to list</a>
-
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+<article>
+    <div class="container">
+        <div class="row">
+            <div  style="text-align: justify">
+                {{ article.content }}
+            </div>
+        </div>
+        <div class="row">
+        {{ include('sections/articles/meta.html') }}
+        </div>
+    </div>
+</article>
 {% endblock %}
