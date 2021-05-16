@@ -410,3 +410,27 @@ body {
 article .container .row{
   padding: 15px;
 }
+
+
+.post-form [id$=_date],
+.post-form [id$=_time]{
+  display: inline-block;
+}
+.post-form [id$=_time]{
+  margin-left: 10px;
+}
+.post-form [id$=_date] > select,
+.post-form [id$=_time] > select{
+  padding: 5px;
+  margin-right: 5px;
+}
+
+
+.actions {
+  text-align: right;
+}
+.actions > a {
+  margin: 0;
+  text-decoration: underline;
+  color: #59483c;
+}

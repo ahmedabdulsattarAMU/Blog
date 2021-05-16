@@ -1,4 +1,65 @@
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_row(form._token) }}
+<div class="container post-form">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <form name="sentMessage" id="contactForm" novalidate>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>{{ form_label(form.title, 'Title') }}</label>
+                        {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Title'}}) }}
+                        <p class="help-block text-danger">
+                            {{ form_errors(form.title) }}
+                        </p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>{{ form_label(form.content, 'Content') }}</label>
+                        {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Content ...'}}) }}
+                        <p class="help-block text-danger">
+                        {{ form_errors(form.content) }}
+                        </p>
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <i class="fa fa-calendar"></i> 
+                    {{ form_label(form.publishedAt) }}
+                    {{ form_widget(form.publishedAt) }}
+                    <div class="form-error">
+                        {{ form_errors(form.publishedAt) }}
+                    </div>
+                    <p class="help-block text-danger">
+                         {{ form_errors(form.publishedAt) }}
+                    </p>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <i class="fa fa-calendar"></i> 
+                    {{ form_label(form.editedAt) }}
+                    {{ form_widget(form.editedAt) }}
+                    <div class="form-error">
+                        {{ form_errors(form.editedAt) }}
+                    </div>
+                    <p class="help-block text-danger">
+                         {{ form_errors(form.editedAt) }}
+                    </p>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-default">
+                            {{ button_label|default('Save') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }} 
