@@ -26,6 +26,14 @@ class ArticleType extends AbstractType
             'by_reference' => false,
             'allow_delete' => true,
         ]);
+
+        $builder->add('categories', CollectionType::class, [
+            'entry_type' => CategoryType::class,
+            'entry_options' => ['label' => false],
+            'allow_add' => true,
+            'by_reference' => false,
+            'allow_delete' => true,
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

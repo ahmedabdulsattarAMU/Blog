@@ -1,7 +1,15 @@
 jQuery(document).ready(function() {
 
+    setCollectionHolder('keywords')
+
+    setCollectionHolder('categories')
+
+});
+
+
+function setCollectionHolder(selector){
     // Get the ul that holds the collection of tags
-    $collectionHolder = $('ul.keywords');
+    $collectionHolder = $('ul.' + selector);
 
     // add a delete link to all of the existing tag form li elements
     $collectionHolder.find('li').each(function() {
@@ -9,17 +17,17 @@ jQuery(document).ready(function() {
     });
 
     // Get the ul that holds the collection of tags
-    var $tagsCollectionHolder = $('ul.keywords');
+    var $tagsCollectionHolder = $('ul.' + selector);
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
     $tagsCollectionHolder.data('index', $tagsCollectionHolder.find('input').length);
 
-    $('body').on('click', '.add_item_link', function(e) {
+    $('body').on('click', '.' + selector + '_add_item_link', function(e) {
         var $collectionHolderClass = $(e.currentTarget).data('collectionHolderClass');
         // add a new tag form (see next code block)
         addFormToCollection($collectionHolderClass);
     })
-});
+}
 
 
 

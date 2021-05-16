@@ -424,6 +424,9 @@ article .container .row{
   padding: 5px;
   margin-right: 5px;
 }
+.badges label{
+  margin-bottom: 0;
+}
 
 
 .actions {
@@ -438,4 +441,8 @@ article .container .row{
 .post-form li *{
   display:inline-block;
   margin:0 10px;
+}
+
+.meta-container {
+  padding-top: 5px;
 }

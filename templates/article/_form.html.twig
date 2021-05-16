@@ -80,10 +80,44 @@
                             </li>
                         {% endfor %}
                     </ul>
-                    <button type="button" class="add_item_link" data-collection-holder-class="keywords">Add a tag</button>
+                    <button type="button" class="keywords_add_item_link" data-collection-holder-class="keywords">Add a tag</button>
                 </div>
 
                 <br>
+
+
+                <div class="form-group">
+
+                    {{ form_label(form.categories) }}
+            
+
+                    <ul class="categories" data-prototype="
+                        <div>
+                            <label>__name__</label>
+                            <div id='article_categories___name__'>
+                                <div>
+                                    <label for='article_categories___name___name' class=' required'>Name</label>
+                                    <input type='text' id='article_categories___name___name' name='article[categories][__name__][name]' required='required' maxlength='255' />
+                                </div>
+                            </div>
+                        </div>"
+                    >
+                        {% for categoryForm in form.categories %}
+                            <li>
+                                <div>
+                                    <label>{{ loop.index0 }}</label>
+                                    <div>
+                                        <div>
+                                            <label class="required">{{ form_label(categoryForm.name) }}</label>
+                                            {{ form_widget(categoryForm.name) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="categories_add_item_link" data-collection-holder-class="categories">Add a category</button>
+                </div>
 
 
 

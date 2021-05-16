@@ -22,6 +22,12 @@ class Category
      */
     private $name;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Article", mappedBy="article")
+    */
+    private $articles;
+    
+
     public function getId(): ?int
     {
         return $this->id;

@@ -25,7 +25,7 @@ class Keyword
     /**
     * @ORM\ManyToMany(targetEntity="Article", mappedBy="article")
     */
-   private $articles;
+    private $articles;
 
     public function getId(): ?int
     {

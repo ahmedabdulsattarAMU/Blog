@@ -55,12 +55,27 @@ class Article
     private $keywords;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="article", cascade={"persist"})
+     * @ORM\JoinTable(
+     *  name="article_category",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $categories;
+
+
     public function __construct()
     {
         $this->publishedAt  = new DateTime(); 
         $this->editedAt     = new DateTime(); 
         $this->keywords     = new ArrayCollection();
-
+        $this->categories   = new ArrayCollection();
     }
     
 
@@ -133,6 +148,25 @@ class Article
     public function getKeywords(): Collection
     {
         return $this->keywords;
+    }
+
+
+
+    public function addCategory(Category $category): self
+    {
+        $this->categories[] = $category;
+ 
+        return $this;
+    }
+ 
+    public function removeCategory(Category $category): bool
+    {
+        return $this->categories->removeElement($category);
+    }
+ 
+    public function getCategories(): Collection
+    {
+        return $this->categories;
     }
 
 }
