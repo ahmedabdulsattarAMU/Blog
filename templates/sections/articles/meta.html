@@ -17,5 +17,11 @@
         {% for category in  article.categories %}
             <span class="badge badge-pill badge-info">{{category.name}}</span>
         {% endfor %}
+
+        <br>
+        <label class="small">Comments : </label>
+        <span class="fa fa-comment"></span>
+        {{  article.comments |length }}
+
     </div>
 </div>

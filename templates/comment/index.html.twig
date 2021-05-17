@@ -1,37 +1,20 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Comment index{% endblock %}
-
-{% block body %}
-    <h1>Comment index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>PublishedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comment in comments %}
-            <tr>
-                <td>{{ comment.id }}</td>
-                <td>{{ comment.content }}</td>
-                <td>{{ comment.publishedAt ? comment.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
-                    <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('comment_new') }}">Create new</a>
-{% endblock %}
+<section class="comments">
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <h1>Comments</h1>
+                {% for comment in article.comments %}
+                    <div class="comment mt-4 text-justify float-left"> <img src="{{ asset('img/user.jpeg') }}" alt="" class="rounded-circle" width="40" height="40">
+                        <h4>Jhon Doe</h4> <span>- {{ comment.publishedAt ? comment.publishedAt|date('Y-m-d H:i') : '' }}</span> <br>
+                        <p>{{comment.content}}</p>
+                    </div>   
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="">
+                {{ include('comment/new.html.twig') }}  
+            </div>
+        </div>
+    </div>
+</section>

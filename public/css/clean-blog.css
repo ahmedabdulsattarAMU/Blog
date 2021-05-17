@@ -458,6 +458,7 @@ article .container .row{
   border-radius: 5px;
   padding: 40px;
   margin: 5px auto;
+  width: 100%;
 }
 
 .comments .comment h4,

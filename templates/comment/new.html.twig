@@ -1,11 +1,10 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Comment{% endblock %}
-
-{% block body %}
-    <h1>Create new Comment</h1>
-
-    {{ include('comment/_form.html.twig') }}
-
-    <a href="{{ path('comment_index') }}">back to list</a>
-{% endblock %}
+{{ form_start(commentForm, {'action': path('article_comment_new', {id: article.id})}) }}
+{{ form_row(commentForm._token) }}
+    <div class="form-group">
+        <h4>Leave a comment</h4>
+        {{ form_widget(commentForm.content, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group"> 
+        <button type="submit" id="post" class="btn">Post Comment</button> 
+    </div>
+{{ form_end(commentForm) }} 

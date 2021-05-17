@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Comment
 {
@@ -26,6 +27,22 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $publishedAt;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Article")
+    */
+    protected $article;
+
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+    */
+    public function updatedTimestamps(): void
+    {
+        $this->setPublishedAt(new \DateTime('now'));    
+    }
+
 
     public function getId(): ?int
     {
@@ -55,4 +72,15 @@ class Comment
 
         return $this;
     }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
+        return $this;
+    }
+
 }

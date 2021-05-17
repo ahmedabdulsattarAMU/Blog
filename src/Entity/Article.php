@@ -70,6 +70,12 @@ class Article
     private $categories;
 
 
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", cascade={"persist", "remove"}, mappedBy="article")
+    */
+    protected $comments;
+
+
     public function __construct()
     {
         $this->publishedAt  = new DateTime(); 
@@ -168,5 +174,10 @@ class Article
     {
         return $this->categories;
     }
+    
 
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }
